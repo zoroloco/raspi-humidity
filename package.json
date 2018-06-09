@@ -1,0 +1,33 @@
+{
+  "name": "raspi-humidity",
+  "version": "1.0.0",
+  "description": "Node JS client that periodically executes Adafruit's python script to read from A2303 humidity sensor and report results back to a remote clinet",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zoroloco/raspi-humidity.git"
+  },
+  "keywords": [
+    "2302",
+    "humidity",
+    "raspberry",
+    "pi",
+    "nodejs",
+    "node",
+    "sensor"
+  ],
+  "author": "kenneth centurion",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/zoroloco/raspi-humidity/issues"
+  },
+  "homepage": "https://github.com/zoroloco/raspi-humidity#readme",
+  "dependencies": {
+    "async": "^2.6.0",
+    "winston": "^2.4.1",
+    "underscore": "^1.8.3"
+  }
+}

@@ -1,0 +1,8 @@
+{ "title" : "raspi-humidity",
+  "remote-server": "https://www.druidia.net",
+  "remote_path": "/api/humidity",
+  "logger" : {
+    "enabled" : true,
+    "dir"     : "logs"
+  }
+}
