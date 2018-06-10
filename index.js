@@ -13,10 +13,12 @@ var findHumidity = function() {
     function post(msg) {
         log.info('Posting to: ' + conf.remote_server+conf.remote_path);
 
-        request.post({
-            headers: {'content-type' : 'application/json'},
+        request({
+            //headers: {'content-type' : 'application/json'},
             url:     conf.remote_server+conf.remote_path,
-            body:    msg
+            body:    msg,
+            method: "POST",
+            json: true
         }, function(error, response, body){
             if (!error && response.statusCode == 200) {
                 log.info('got response from remote server:' + body);
