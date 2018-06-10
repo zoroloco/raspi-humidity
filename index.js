@@ -3,7 +3,8 @@ var pathUtil = require('path'),
     log      = require(pathUtil.join(__dirname,'./logger.js')),
     conf     = require(pathUtil.join(__dirname,'./conf.json')),
     cp       = require('child_process'),
-    request  = require('request');
+    http     = require('http'),
+    buffer   = require('buffer').Buffer;
 
 log.init();
 var cmd     = pathUtil.join(__dirname,"AdafruitDHT.py");
@@ -12,18 +13,19 @@ var findHumidity = function() {
 
     function post(msg) {
         log.info('Posting to: ' + conf.remote_server+conf.remote_path);
+        var body = JSON.stringify({data: msg});
 
-        request({
-            //headers: {'content-type' : 'application/json'},
-            url:     conf.remote_server+conf.remote_path,
-            body:    msg,
+        var request = new http.ClientRequest({
+           hostname: conf.remote_server,
+            port: 8080,
+            path: conf.remote_path,
             method: "POST",
-            json: true
-        }, function(error, response, body){
-            if (!error && response.statusCode == 200) {
-                log.info('got response from remote server:' + body);
+            headers: {
+               "Content-Type" : "application/json",
+                "Content-Length": Buffer.byteLength(body)
             }
         });
+        request.end(body);
     }
 
     var a2303 = cp.spawn('python', [cmd, '2302', conf.pin]);
