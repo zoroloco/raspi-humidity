@@ -12,16 +12,16 @@ var findHumidity = function() {
 
     function post(msg) {
         log.info('Posting to: ' + conf.remote_server+conf.remote_path);
-        var postMsg = {
-            'stats' : msg
-        };
 
-        request.post({ url: conf.remote_server+conf.remote_path, postMsg },
-            function(error, response, body) {
-                if (!error && response.statusCode == 200) {
-                    log.info('got response from remote server:' + JSON.stringify(body));
-                }
-            });
+        request.post({
+            headers: {'content-type' : 'application/json'},
+            url:     conf.remote_server+conf.remote_path,
+            body:    msg
+        }, function(error, response, body){
+            if (!error && response.statusCode == 200) {
+                log.info('got response from remote server:' + body);
+            }
+        });
     }
 
     var a2303 = cp.spawn('python', [cmd, '2302', conf.pin]);
