@@ -6,15 +6,25 @@ var pathUtil = require('path'),
     request  = require('request');
 
 log.init();
+var cmd     = pathUtil.join(__dirname,"AdafruitDHT.py");
 
-var start = function() {
-    var cmd     = pathUtil.join(__dirname,"AdafruitDHT.py");
+var findHumidity = function() {
 
-    var a2303 = cp.spawn('python', [cmd]);
+    function post(msg) {
+        request.post({ url: conf.remote-server+conf.remote_path, msg },
+            function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    log.info('got response from remote server:' + JSON.stringify(body));
+                }
+            });
+    }
+
+    var a2303 = cp.spawn('python', [cmd, '2302', conf.pin]);
     a2303.stdin.setEncoding('utf-8');
 
     a2303.stdout.on('data', (data) => {
         log.info('rx data from A2302 sensor:'+data.toString());
+        post(data.toString());
     });
 
     a2303.stderr.on('data', (err) => {
@@ -30,11 +40,4 @@ var start = function() {
     });
 };
 
-/*
-request.post({ url: conf.remote-server+conf.remote_path },
-    function(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            log.info('got response from remote server:' + JSON.stringify(body));
-        }
-    });
-*/
+setInterval(findHumidity(),conf.interval);

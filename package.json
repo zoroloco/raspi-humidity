@@ -4,7 +4,7 @@
   "description": "Node JS client that periodically executes Adafruit's python script to read from A2303 humidity sensor and report results back to a remote clinet",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
   "dependencies": {
     "async": "^2.6.0",
     "winston": "^2.4.1",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "request": "^2.87.0"
   }
 }

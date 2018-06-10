@@ -1,5 +1,7 @@
 { "title" : "raspi-humidity",
-  "remote-server": "https://www.druidia.net",
+  "pin" : 2,
+  "interval" : 300000,
+  "remote_server": "https://localhost",
   "remote_path": "/api/humidity",
   "logger" : {
     "enabled" : true,
