@@ -1,7 +1,8 @@
 { "title" : "raspi-humidity",
   "pin" : 2,
   "interval" : 10000,
-  "remote_server": "https://localhost",
+  "remote_server": "localhost",
+  "remote_port" : 443
   "remote_path": "/papi/humidity",
   "logger" : {
     "enabled" : true,
