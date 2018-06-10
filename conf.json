@@ -2,7 +2,7 @@
   "pin" : 2,
   "interval" : 300000,
   "remote_server": "https://localhost",
-  "remote_path": "/api/humidity",
+  "remote_path": "/papi/humidity",
   "logger" : {
     "enabled" : true,
     "dir"     : "logs"

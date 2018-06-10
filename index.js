@@ -11,7 +11,12 @@ var cmd     = pathUtil.join(__dirname,"AdafruitDHT.py");
 var findHumidity = function() {
 
     function post(msg) {
-        request.post({ url: conf.remote-server+conf.remote_path, msg },
+        log.info('Posting to: ' + conf.remote_server+conf.remote_path);
+        var postMsg = {
+            'stats' : msg
+        };
+
+        request.post({ url: conf.remote_server+conf.remote_path, postMsg },
             function(error, response, body) {
                 if (!error && response.statusCode == 200) {
                     log.info('got response from remote server:' + JSON.stringify(body));
@@ -40,4 +45,4 @@ var findHumidity = function() {
     });
 };
 
-setInterval(findHumidity(),conf.interval);
+setInterval(findHumidity,conf.interval);
