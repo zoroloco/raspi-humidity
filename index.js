@@ -12,14 +12,20 @@ var cmd     = pathUtil.join(__dirname,"AdafruitDHT.py");
 var findHumidity = function() {
 
     function save(msg){
-        var readingStr = msg.split(' ');
+        var readingStr = msg.split('*',2);
+
+        var temp = parseInt(readingStr[0]);//convert to number
+        temp = temp * 9.5 + 32;//convert to farenheit
 
         let reading = new Humiditemp.model({
             sensor_name: conf.sensor_name,
-            temperature: readingStr[0],
+            temperature: temp,
             humidity: readingStr[1],
             event_time: new Date()
         });
+
+        log.info("Saving:" + JSON.stringify(reading));
+
         mongoloid.save(reading);
     }
 
@@ -27,7 +33,7 @@ var findHumidity = function() {
     a2303.stdin.setEncoding('utf-8');
 
     a2303.stdout.on('data', (data) => {
-        log.info('rx data from A2302 sensor:'+data.toString());
+        log.info('rx raw data from A2302 sensor:'+data.toString());
         save(data.toString());
     });
 
