@@ -16,8 +16,8 @@ var findHumidity = function() {
 
         let reading = new Humiditemp.model({
             sensor_name: conf.sensor_name,
-            humidity: readingStr[0],
-            temperature: readingStr[1],
+            temperature: readingStr[0],
+            humidity: readingStr[1],
             event_time: new Date()
         });
         mongoloid.save(reading);
