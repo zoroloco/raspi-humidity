@@ -1,7 +1,7 @@
 { "title" : "raspi-humidity",
   "sensor_name" : "master-closet",
   "pin" : 2,
-  "interval" : 10000,
+  "interval" : 300000,
   "remote_server": "localhost",
   "remote_port" : 443,
   "remote_path": "/papi/humidity",

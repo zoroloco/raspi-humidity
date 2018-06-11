@@ -12,9 +12,13 @@ var cmd     = pathUtil.join(__dirname,"AdafruitDHT.py");
 var findHumidity = function() {
 
     function save(msg){
+        var readingStr = msg.split(' ');
+
         let reading = new Humiditemp.model({
             sensor_name: conf.sensor_name,
-            humidity: msg
+            humidity: readingStr[0],
+            temperature: readingStr[1],
+            event_time: new Date()
         });
         mongoloid.save(reading);
     }
