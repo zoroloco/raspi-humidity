@@ -12,15 +12,18 @@ var cmd     = pathUtil.join(__dirname,"AdafruitDHT.py");
 var findHumidity = function() {
 
     function save(msg){
-        var readingStr = msg.split('*',2);
+        var readingStr = msg.split(':',2);
 
-        var tempStr = readingStr[0].replace('Temp=','');
-        var temp = parseInt(tempStr);//convert to number
-        temp = temp * 9.5 + 32;//convert to farenheit
+        //pretty format
+        //var tempStr = readingStr[0].replace('Temp=','');
+        //var temp = parseInt(tempStr);//convert to number
+        //temp = temp * 9/5 + 32;//convert to farenheit
+        //pretty format
+        //var hum = readingStr[1].replace(' ','').replace('Humidity=','').replace('\n','').trim();
 
         let reading = new Humiditemp.model({
             sensor_name: conf.sensor_name,
-            temperature: temp,
+            temperature: readingStr[0],
             humidity: readingStr[1],
             event_time: new Date()
         });
