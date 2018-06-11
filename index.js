@@ -3,7 +3,8 @@ var pathUtil = require('path'),
     log      = require(pathUtil.join(__dirname,'./logger.js')),
     conf     = require(pathUtil.join(__dirname,'./conf.json')),
     mongoloid  = require(pathUtil.join(__dirname,'./mongoloid.js')),
-    cp       = require('child_process');
+    cp       = require('child_process'),
+    Humiditemp = require(pathUtil.join(__dirname,'./humiditemp-model.js'));
 
 log.init();
 var cmd     = pathUtil.join(__dirname,"AdafruitDHT.py");
@@ -11,7 +12,11 @@ var cmd     = pathUtil.join(__dirname,"AdafruitDHT.py");
 var findHumidity = function() {
 
     function save(msg){
-        
+        let reading = new Humiditemp.model({
+            sensor_name: conf.sensor_name,
+            humidity: msg
+        });
+        mongoloid.save(reading);
     }
 
     var a2303 = cp.spawn('python', [cmd, '2302', conf.pin]);
