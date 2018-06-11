@@ -3,18 +3,45 @@ var pathUtil = require('path'),
     log      = require(pathUtil.join(__dirname,'./logger.js')),
     conf     = require(pathUtil.join(__dirname,'./conf.json')),
     cp       = require('child_process'),
-    http     = require('http');
+    https = require('https');
 
 log.init();
 var cmd     = pathUtil.join(__dirname,"AdafruitDHT.py");
-var client  = http.createClient(conf.remote_port, conf.remote_server);
-var request = client.request("POST", conf.remote_path, {"host":conf.remote_server});
 
 var findHumidity = function() {
 
     function post(msg) {
         log.info('Posting to: ' + conf.remote_server+conf.remote_path);
-        request.write(msg);
+
+        var postData = JSON.stringify({msg: msg});
+
+        var options = {
+            hostname: 'localhost',
+            port: 443,
+            path: '/papi/humidity',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': postData.length
+            }
+        };
+
+        var req = https.request(options, (res) => {
+            console.log('statusCode:', res.statusCode);
+            console.log('headers:', res.headers);
+
+            res.on('data', (d) => {
+                process.stdout.write(d);
+            });
+        });
+
+        req.on('error', (e) => {
+            console.error(e);
+        });
+
+        req.write(postData);
+        req.end();
+      
     }
 
     var a2303 = cp.spawn('python', [cmd, '2302', conf.pin]);
