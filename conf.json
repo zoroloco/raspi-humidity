@@ -7,5 +7,9 @@
   "logger" : {
     "enabled" : true,
     "dir"     : "logs"
+  },
+  "mongo" : {
+    "connectionString" : "mongodb://raspi-web:27017/druidia",
+    "keepAlive" : 300000
   }
 }
