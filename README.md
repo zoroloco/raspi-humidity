@@ -7,6 +7,8 @@ https://github.com/adafruit/Adafruit_Python_DHT
 
 also:
 
+sudo apt-get install python-setuptools (if you don't already have it)
+
 npm install -g forever
 
 Please follow the installation instructions on the site above.  You may also need to
