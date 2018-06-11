@@ -5,6 +5,10 @@ Node JS application that polls the Adafruit_Python_DHT to get humidity from 2302
 
 https://github.com/adafruit/Adafruit_Python_DHT
 
+also:
+
+npm install -g forever
+
 Please follow the installation instructions on the site above.  You may also need to
 install the setup tools package.
 
