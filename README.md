@@ -20,3 +20,6 @@ https://drive.google.com/open?id=1YSUgaanhEvnHGVmTMB3yWyjaoFtSwGN4
 
 https://drive.google.com/open?id=1Xr6N-mXPaDkKJ9x4AHPt6PCuCh-UDPO4
 
+Thank you also to unic8 on thingiverse for providing the case to the raspbery pi zero.
+
+https://www.thingiverse.com/thing:1181604
