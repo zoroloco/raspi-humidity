@@ -15,3 +15,8 @@ Please follow the installation instructions on the site above.  You may also nee
 install the setup tools package.
 
 This app has been tested on a raspberry pi zero v1.3 and the A2302 humidity sensor.
+
+https://drive.google.com/open?id=1YSUgaanhEvnHGVmTMB3yWyjaoFtSwGN4
+
+https://drive.google.com/open?id=1Xr6N-mXPaDkKJ9x4AHPt6PCuCh-UDPO4
+
